@@ -20,7 +20,6 @@ jobs:
         run: |
           echo "current directory: `pwd`"
           echo "current user: `whoami`"
-          echo "current user permissions: `sudo -l`"
           echo "------------------running svc------------------"
           ps aux
           echo "------------------------------------"
