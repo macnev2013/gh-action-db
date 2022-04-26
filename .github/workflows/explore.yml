@@ -7,6 +7,14 @@ jobs:
   explore-env:
     runs-on: ubuntu-latest
     name: Exploring intenal environment of a runner
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+        - 32574:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
 
       - name: Exploring intenal environment of a runner
@@ -23,4 +31,10 @@ jobs:
           echo "------------------docker ps------------------"
           docker ps
           echo "------------------------------------"
+          
+      - name: Verify MySQL connection from host
+        run: |
+          sudo apt-get install -y mysql-client
+          mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
+          
           
