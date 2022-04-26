@@ -24,12 +24,6 @@ jobs:
           echo "------------------running svc------------------"
           ps aux
           echo "------------------------------------"
-          echo "------------------docker images------------------"
-          docker images
-          echo "------------------------------------"
-          echo "------------------docker ps------------------"
-          docker ps
-          echo "------------------------------------"
           
       - name: Verify MySQL connection from host
         run: |
