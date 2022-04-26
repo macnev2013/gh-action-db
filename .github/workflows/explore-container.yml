@@ -1,0 +1,38 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  explore-env:
+    runs-on: ubuntu-latest
+    name: Exploring intenal environment of a runner - container
+    container: ubuntu
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+
+      - name: Exploring intenal environment of a runner - host
+        run: |
+          echo "current directory: `pwd`"
+          echo "current user: `whoami`"
+          echo "current user permissions: `sudo -l`"
+          echo "------------------running svc------------------"
+          ps aux
+          echo "------------------------------------"
+          echo "------------------docker images------------------"
+          docker images
+          echo "------------------------------------"
+          echo "------------------docker ps------------------"
+          docker ps
+          echo "------------------------------------"
+          
+      - name: Verify MySQL connection from host
+        run: |
+          apt-get update
+          apt-get install -y mysql-client
+          mysql --host mydb -uroot -ppassword -e "SHOW DATABASES"
