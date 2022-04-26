@@ -1,0 +1,16 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  explore-env:
+    runs-on: ubuntu-latest
+    name: Exploring intenal environment of a runner
+    steps:
+
+      - name: Exploring intenal environment of a runner
+        run: |
+          pwd
+          whoami
+          sudo -l
