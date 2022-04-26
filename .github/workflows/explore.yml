@@ -11,6 +11,9 @@ jobs:
 
       - name: Exploring intenal environment of a runner
         run: |
-          pwd
-          whoami
-          sudo -l
+          echo "current directory: `pwd`"
+          echo "current user: `whoami`"
+          echo "current user permissions: `sudo -l`"
+          echo "------------------running svc------------------"
+          ps aux
+          echo "------------------------------------"
