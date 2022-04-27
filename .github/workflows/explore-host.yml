@@ -35,6 +35,8 @@ jobs:
           echo "current user permissions: `sudo -l`"
           echo "------------------running svc------------------"
           ps aux
+          echo "------------------docker ps------------------"
+          docker ps
           
       - name: Verify MySQL connection from host
         run: |
