@@ -12,6 +12,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: two
         ports:
         - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -20,6 +21,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: one
         ports:
         - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -33,13 +35,6 @@ jobs:
           echo "current user permissions: `sudo -l`"
           echo "------------------running svc------------------"
           ps aux
-          echo "------------------------------------"
-          echo "------------------docker images------------------"
-          docker images
-          echo "------------------------------------"
-          echo "------------------docker ps------------------"
-          docker ps
-          echo "------------------------------------"
           
       - name: Verify MySQL connection from host
         run: |
